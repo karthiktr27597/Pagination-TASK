@@ -503,19 +503,31 @@ let tabledata = [
   
 
   let body = document.querySelector('body');
+
+  let title = document.createElement('h1');
+  title.setAttribute('id','title');
+  title.innerText = 'DOM Pagination Task';
+
+
+  let p = document.createElement('p');
+  p.setAttribute("id","description");
+  body.append(p);
+  p.append(title);
+
+  
   
   let div = document.createElement('div');
-  div.classList.add('container');
-  div.setAttribute("id","title");
+  div.classList.add('table-responsive');
   body.append(div);
 
   let table1 = document.createElement('table')
-  table1.setAttribute('id','our-table')
-  table1.classList.add = "table"
+  table1.classList.add('table','table-bordered');
+  table1.setAttribute('id','table');
   div.append(table1);
 
   let thead = document.createElement('thead')
   thead.setAttribute('id','table-head')
+  thead.classList.add('table-bordered');
   table1.append(thead);
 
   let tr = document.createElement('tr');
@@ -532,31 +544,14 @@ let tabledata = [
   tr.append(th2);
   tr.append(th3);
 
-// let tbody = document.createElement('tbody')
-// tbody.setAttribute('id','table-body');
-// table1.append(tbody);
 
 let div1 = document.createElement('div');
-div1.classList.add('container')
+div1.classList.add('d-flex', 'justify-content-center')
+div1.setAttribute('id','buttons');
 let div2 = document.createElement('div');
 div2.setAttribute('id',"pagination-wrapper");
 div1.append(div2);
 body.append(div1);
-
-
-// let nav = document.createElement('nav');
-// let ul = document.createElement('ul');
-// let li = document.createElement('li');
-// let prevbutton = document.createElement('button');
-// ul.classList.add("pagination");
-// li.classList.add('page-item');
-// prevbutton.setAttribute('id','prevbutton');
-// prevbutton.innerText = "Previous"
-// nav.append(ul);
-// ul.append(li);
-// li.append(prevbutton);
-// body.append(nav);
-
 
 
 var state = {
@@ -574,9 +569,6 @@ function pagination(querySet, pages, rows) {
 
   var trimmedData = querySet.slice(trimStart,trimEnd)
   var pages = Math.ceil(querySet.length/rows)
-
-  //console.log(querySet.length);
-  //console.log(rows);
   
   return{
     'querySet': trimmedData,
@@ -591,7 +583,7 @@ function pageButtons(pages){
   console.log('window', state.window);
 
   var maxLeft =(Number(state.page) - Math.floor(state.window/2))
-  var maxRight = (Number(state.page) + Math.floor(state.window/2)) // 3 + 2
+  var maxRight = (Number(state.page) + Math.floor(state.window/2)) 
 
 console.log('maxLeft f',maxLeft);
 console.log('maxRigth f',maxRight);
@@ -619,7 +611,6 @@ console.log('maxRigth',maxRight);
 
   if(state.page !=1)
   {
-     // wrapper.innerHTML = `<button id=${1} onclick="btn(this)" class="page btn btn-sm btn-info">First</button>` + wrapper.innerHTML
       wrapper.innerHTML = `<button id=${1} onclick="btn(this)" class="page btn btn-sm btn-info">First</button>`+`<button id=${state.page-1} onclick="btn(this)" class="page btn btn-sm btn-info">Prev</button>` + wrapper.innerHTML
   }
 
@@ -647,9 +638,6 @@ function buildTable() {
   console.log('Data:', data);
 
   var myList = data.querySet
-  // console.log('mylist',myList[0]);
-  // console.log('length', myList.length);
-  // console.log('keys', Object.keys(myList[0]));
 
   let tbody = document.createElement('tbody')
   tbody.setAttribute('id','table-body');
@@ -669,23 +657,22 @@ function buildTable() {
   pageButtons(data.pages)
 }
 
+let sample = document.createElement('div')
+let sampletable = document.createElement('table')
+sampletable.classList.add('table','table-bordered');
+sample.append(sampletable);
+body.append(sample);
+
+//  Inside the div element, table element is required to list the details.
+// There should be an table element with class="table table-bordered"
+
+//  For this pagination task first,last, previous and next buttons are required. If I do not have such buttons I will see an error.
+// There should be an <div> element with id="buttons" and class="d-flex justify-content-center"
 
 
-// const pageNumbers = (total,max,current)=>{
-//   const half = Math.round(max/2);
-//   let to = max;
 
-//   if(current+half >= total){
-//     to = total;
-//   } else if(current >half){
-//     to = current + half;
-//   }
-  
-//   let from = to - max;
 
-//   return Array.from({length: max},(_, i) => (i+1) + from);
-// }
-//console.log(pageNumbers(100, 10, 5));
+
 
 
 
