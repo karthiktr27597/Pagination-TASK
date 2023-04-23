@@ -657,17 +657,6 @@ function buildTable() {
   pageButtons(data.pages)
 }
 
-let sample = document.createElement('div')
-let sampletable = document.createElement('table')
-sampletable.classList.add('table','table-bordered');
-sample.append(sampletable);
-body.append(sample);
-
-//  Inside the div element, table element is required to list the details.
-// There should be an table element with class="table table-bordered"
-
-//  For this pagination task first,last, previous and next buttons are required. If I do not have such buttons I will see an error.
-// There should be an <div> element with id="buttons" and class="d-flex justify-content-center"
 
 
 
